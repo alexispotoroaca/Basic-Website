@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Coșul meu{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Coș de cumpărături</h2>
+
+{% if cart_items %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Produs</th>
+      <th>Cantitate</th>
+      <th>Preț unitar</th>
+      <th>Total</th>
+      <th>Acțiune</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in cart_items %}
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>{{ item.price }} RON</td>
+      <td>{{ item.total }} RON</td>
+      <td>
+        <a href="{{ url_for('remove_from_cart') }}?id={{ item.id }}" class="btn btn-danger btn-sm">Șterge</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="text-right">
+  <h5>Total general: {{ total_price }} RON</h5>
+  <a href="{{ url_for('checkout') }}" class="btn btn-success">Continuă la checkout</a>
+</div>
+
+{% else %}
+<p>Coșul tău este gol.</p>
+<a href="{{ url_for('index') }}" class="btn btn-primary">Înapoi la produse</a>
+{% endif %}
+{% endblock %}

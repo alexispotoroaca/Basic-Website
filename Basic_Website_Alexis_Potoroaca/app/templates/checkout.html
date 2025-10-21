@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Finalizare comandă{% endblock %}
+
+{% block content %}
+<h2 class="text-center my-4">Finalizare comandă</h2>
+
+<!-- Produsele din coș -->
+<div class="table-responsive mb-4">
+  <table class="table table-bordered text-center">
+    <thead class="table-light">
+      <tr>
+        <th>Produs</th>
+        <th>Cantitate</th>
+        <th>Preț unitar</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart_items %}
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price }} RON</td>
+        <td>{{ item.total }} RON</td>
+      </tr>
+      {% endfor %}
+      <tr class="fw-bold">
+        <td colspan="3" class="text-end">Total general:</td>
+        <td>{{ total_price }} RON</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Formular comandă -->
+<form method="POST" action="{{ url_for('checkout') }}" class="mb-5">
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="full_name" class="form-label">Nume complet</label>
+      <input type="text" class="form-control" id="full_name" name="full_name" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="phone" class="form-label">Telefon</label>
+      <input type="tel" class="form-control" id="phone" name="phone" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="payment_method" class="form-label">Metodă de plată</label>
+      <select class="form-select" id="payment_method" name="payment_method" required>
+        <option value="card">Card</option>
+        <option value="bank_transfer">Transfer bancar</option>
+        <option value="cash">Numerar</option>
+      </select>
+    </div>
+    <div class="col-12 mb-3">
+      <label for="address" class="form-label">Adresă completă</label>
+      <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-success">Trimite comanda</button>
+  </div>
+</form>
+{% endblock %}

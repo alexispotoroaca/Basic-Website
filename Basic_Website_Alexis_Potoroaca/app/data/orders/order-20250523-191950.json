@@ -1,0 +1,31 @@
+{
+    "full_name": "swsww",
+    "email": "dedede@gmail.com",
+    "phone": "dedwq",
+    "address": "dde",
+    "payment_method": "bank_transfer",
+    "items": [
+        {
+            "id": "2",
+            "name": "Parfum 2",
+            "price": 200,
+            "quantity": 2,
+            "total": 400
+        },
+        {
+            "id": "3",
+            "name": "Parfum 3",
+            "price": 130,
+            "quantity": 2,
+            "total": 260
+        },
+        {
+            "id": "4",
+            "name": "Parfum 4",
+            "price": 170,
+            "quantity": 2,
+            "total": 340
+        }
+    ],
+    "total": 1000
+}
